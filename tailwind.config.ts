@@ -9,9 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary:'#0f172a',
+        secondary:'#1e293b',
+        accent:'#facc15',
+        textMain: '#ffffff',
+        textSecondary: '#94a3b8',
+        cardBg: '#2d3748'
       },
+      fontFamily:{
+        vazir:['Vazir'],
+      }
     },
   },
   plugins: [],
