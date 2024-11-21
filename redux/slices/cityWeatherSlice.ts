@@ -22,7 +22,7 @@ interface CityWeatherState {
 
 const initialState: CityWeatherState = {
   cities: [],
-  defaultCities: ['London', 'New York', 'Tokyo', 'Paris', 'Berlin'],
+  defaultCities: ['London', 'New York', 'Tokyo', 'Berlin'],
   status: 'idle',
   error: null,
 };

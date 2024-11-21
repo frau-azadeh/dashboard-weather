@@ -17,7 +17,7 @@ export default function WeatherSearch() {
   };
 
   return (
-    <div className="flex items-center justify-center mt-6 ">
+    <div className=" items-center justify-center mt-6 flex">
       <input
         type="text"
         value={city}

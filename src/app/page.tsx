@@ -26,10 +26,8 @@ export default function Home() {
       </div>
 
       <div className="flex-1 p-6">
+        <CityList />
         <WeatherSearch />
-        
-          <CityList />
-    
         <CurrentWeatherCard />
         <ForecastCards />
         {weather && <TodayHighlights weather={weather} />}
