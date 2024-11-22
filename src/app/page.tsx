@@ -3,13 +3,15 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchDefaultCitiesWeather } from '../../redux/slices/cityWeatherSlice';
-import WeatherMap from '../components/WeatherMap';
+
 import Sidebar from '@/components/Sidebar';
 import CityList from '@/components/CityList';
 import WeatherSearch from '@/components/WeatherSearch';
 import CurrentWeatherCard from '@/components/CurrentWeatherCard';
 import ForecastCards from '@/components/ForecastCards';
 import TodayHighlights from '@/components/TodayHighlights';
+import TehranWeather from '@/components/TehranWeather';
+
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -31,8 +33,12 @@ export default function Home() {
         <CurrentWeatherCard />
         <ForecastCards />
         {weather && <TodayHighlights weather={weather} />}
-        <WeatherMap />
-       
+        <TehranWeather />
+        <div className="bg-[#1e293b] rounded-lg p-2">
+
+        <img  src="../../../images/world.svg" alt="world" width={300} height={300}/>
+
+        </div>
       </div>
     </div>
   );

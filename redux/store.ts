@@ -2,14 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import currentWeatherReducer from './slices/currentWeatherSlice';
 import forecastReducer from './slices/forecastSlice';
 import cityWeatherReaducer from './slices/cityWeatherSlice';
-import worldMapReaducer from './slices/worldMapSlice';
+import tehranWeatherReaducer from './slices/tehranWeatherSlice';
 
 export const store = configureStore({
   reducer: {
     currentWeather: currentWeatherReducer,
     forecast: forecastReducer,
     cityWeather: cityWeatherReaducer,
-    worldMap: worldMapReaducer,
+    tehranWeather: tehranWeatherReaducer,
   },
 });
 
