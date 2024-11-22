@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchDefaultCitiesWeather } from '../../redux/slices/cityWeatherSlice';
-
+import WeatherMap from '../components/WeatherMap';
 import Sidebar from '@/components/Sidebar';
 import CityList from '@/components/CityList';
 import WeatherSearch from '@/components/WeatherSearch';
@@ -31,6 +31,8 @@ export default function Home() {
         <CurrentWeatherCard />
         <ForecastCards />
         {weather && <TodayHighlights weather={weather} />}
+        <WeatherMap />
+       
       </div>
     </div>
   );
