@@ -8,7 +8,7 @@ export default function ForecastCards() {
   if (!forecast) return null;
 
   return (
-    <div className="md:flex-row flex-col  flex">
+    <div className="md:flex-row flex-col  flex m-4">
       {forecast.list.slice(0, 5).map((day, index) => (
         <div
           key={index}

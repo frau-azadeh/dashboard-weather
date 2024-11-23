@@ -27,17 +27,19 @@ export default function Home() {
         <Sidebar />
       </div>
 
-      <div className="flex-1 p-6">
-        <CityList />
-        <WeatherSearch />
-        <CurrentWeatherCard />
-        <ForecastCards />
-        {weather && <TodayHighlights weather={weather} />}
-        <TehranWeather />
-        <div className="bg-[#1e293b] rounded-lg p-2">
-
-        <img  src="../../../images/world.svg" alt="world" width={300} height={300}/>
-
+      <div className="flex p-6 w-full flex-col lg:flex-row">
+        <div className='flex-none w-full lg:w-2/3 '>
+          <CityList />
+          <WeatherSearch />
+          <CurrentWeatherCard />
+          <ForecastCards />
+          {weather && <TodayHighlights weather={weather} />}
+        </div>
+        <div className='flex-none w-full lg:w-1/3 flex-col lg:flex-row'>
+            <div className="bg-[#1e293b] rounded-lg pl-8 mt-4 ">
+                  <img  src="../../../images/world.svg" alt="world" width={300} height={400}/>
+                </div>
+            <TehranWeather />
         </div>
       </div>
     </div>
