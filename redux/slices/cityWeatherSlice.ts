@@ -1,24 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCurrentWeather } from '../../services/weatherApi';
-
-interface CityWeather {
-  name: string;
-  weather: {
-    description: string;
-    icon: string;
-  }[];
-  main: {
-    temp: number;
-    humidity: number;
-  };
-}
-
-interface CityWeatherState {
-  cities: CityWeather[];
-  defaultCities: string[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
-}
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axiosInstance from '../../src/utils/axiosInstance';
+import { CityWeather, CityWeatherState } from '../slices/types/cityWeatherTypes';
 
 const initialState: CityWeatherState = {
   cities: [],
@@ -27,20 +9,23 @@ const initialState: CityWeatherState = {
   error: null,
 };
 
-// Thunk برای دریافت داده‌های یک شهر
-export const fetchCityWeather = createAsyncThunk(
+// Thunk برای دریافت آب‌وهوای یک شهر
+export const fetchCityWeather = createAsyncThunk<CityWeather, string>(
   'cityWeather/fetchCityWeather',
-  async (city: string, { rejectWithValue }) => {
+  async (city, { rejectWithValue }) => {
     try {
-      return await getCurrentWeather(city);
+      const response = await axiosInstance.get<CityWeather>('weather', {
+        params: { q: city },
+      });
+      return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || 'An error occurred');
     }
   }
 );
 
-// Thunk برای دریافت داده‌های پیش‌فرض
-export const fetchDefaultCitiesWeather = createAsyncThunk(
+// Thunk برای دریافت داده‌های پیش‌فرض شهرها
+export const fetchDefaultCitiesWeather = createAsyncThunk<void, void>(
   'cityWeather/fetchDefaultCitiesWeather',
   async (_, { dispatch }) => {
     const defaultCities = initialState.defaultCities;
@@ -49,6 +34,7 @@ export const fetchDefaultCitiesWeather = createAsyncThunk(
   }
 );
 
+// Slice
 const cityWeatherSlice = createSlice({
   name: 'cityWeather',
   initialState,
@@ -59,15 +45,24 @@ const cityWeatherSlice = createSlice({
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(fetchCityWeather.fulfilled, (state, action) => {
+      .addCase(fetchCityWeather.fulfilled, (state, action: PayloadAction<CityWeather>) => {
         state.status = 'succeeded';
-
         const cityExists = state.cities.find((city) => city.name === action.payload.name);
         if (!cityExists) {
           state.cities.push(action.payload);
         }
       })
       .addCase(fetchCityWeather.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload as string;
+      })
+      .addCase(fetchDefaultCitiesWeather.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchDefaultCitiesWeather.fulfilled, (state) => {
+        state.status = 'succeeded';
+      })
+      .addCase(fetchDefaultCitiesWeather.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string;
       });

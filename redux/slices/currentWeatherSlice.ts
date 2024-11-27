@@ -1,14 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCurrentWeather } from '../../services/weatherApi';
+import axiosInstance from '../../src/utils/axiosInstance';
 
-// تایپ وضعیت آب‌وهوا
+interface CurrentWeather {
+  name: string;
+  main: {
+    temp: number;
+    humidity: number;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+}
+
 interface CurrentWeatherState {
-  data: {
-    name: string;
-    weather: { description: string; icon: string }[];
-    main: { temp: number; humidity: number };
-    wind: { speed: number };
-  } | null;
+  data: CurrentWeather | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -20,18 +26,18 @@ const initialState: CurrentWeatherState = {
 };
 
 // Thunk برای دریافت وضعیت فعلی
-export const fetchCurrentWeather = createAsyncThunk(
+export const fetchCurrentWeather = createAsyncThunk<CurrentWeather, string>(
   'currentWeather/fetchCurrentWeather',
-  async (city: string, { rejectWithValue }) => {
+  async (city, { rejectWithValue }) => {
     try {
-      return await getCurrentWeather(city);
+      const response = await axiosInstance.get(`weather?q=${city}`);
+      return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || 'An error occurred');
     }
   }
 );
 
-// Slice برای مدیریت وضعیت فعلی
 const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState,

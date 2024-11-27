@@ -1,29 +1,32 @@
-'use client';
-
 import { useAppSelector } from '../../redux/hooks';
+import { ForecastItem } from '../../redux/slices/types/forecastTypes';
 
 export default function ForecastCards() {
+  // دریافت داده پیش‌بینی از Redux
   const forecast = useAppSelector((state) => state.forecast.data);
 
-  if (!forecast) return null;
+  // بررسی خطا یا خالی بودن داده
+  if (!forecast || forecast.length === 0) {
+    return <p className="text-white text-center">No forecast data available.</p>;
+  }
 
   return (
-    <div className="md:flex-row flex-col  flex m-4">
-      {forecast.list.slice(0, 5).map((day, index) => (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 m-4">
+      {forecast.slice(0, 8).map((item: ForecastItem, index: number) => (
         <div
           key={index}
-          className="bg-[#1e293b]  rounded-lg p-4 flex-grow flex-col m-1 items-center text-white"
+          className="bg-[#1e293b] rounded-lg p-4 flex flex-col items-center text-white"
         >
-          <p className="text-lg font-semibold mb-2 text-right">
-            {new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'short' })}
+          <p className="mb-2 text-lg font-bold">
+            {new Date(item.dt_txt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </p>
           <img
-            src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+            src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
             alt="weather icon"
-            className="w-35 h-35 "
+            className="w-16 h-16 mb-2"
           />
-          <p className="text-white">{day.weather[0].description}</p>
-          <p className="text-xl font-bold mt-2">{day.main.temp}°C</p>
+          <p>{item.weather[0].description}</p>
+          <p className="text-xl font-bold mt-2">{item.main.temp}°C</p>
         </div>
       ))}
     </div>

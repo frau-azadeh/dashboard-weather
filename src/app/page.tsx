@@ -7,16 +7,14 @@ import { fetchDefaultCitiesWeather } from '../../redux/slices/cityWeatherSlice';
 import Sidebar from '@/components/Sidebar';
 import CityList from '@/components/CityList';
 import WeatherSearch from '@/components/WeatherSearch';
-import CurrentWeatherCard from '@/components/CurrentWeatherCard';
-import ForecastCards from '@/components/ForecastCards';
-import TodayHighlights from '@/components/TodayHighlights';
 import TehranWeather from '@/components/TehranWeather';
+import ForecastCards from '@/components/ForecastCards';
+import CurrentWeatherCard from '@/components/CurrentWeatherCard';
 
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const weather = useAppSelector((state) => state.currentWeather.data);
-
+  const weather = useAppSelector((state)=> state.currentWeather.data);
   useEffect(() => {
     dispatch(fetchDefaultCitiesWeather());
   }, [dispatch]);
@@ -31,9 +29,9 @@ export default function Home() {
         <div className='flex-none w-full lg:w-2/3 '>
           <CityList />
           <WeatherSearch />
-          <CurrentWeatherCard />
+          {weather && <CurrentWeatherCard />}
           <ForecastCards />
-          {weather && <TodayHighlights weather={weather} />}
+        
         </div>
         <div className='flex-none w-full lg:w-1/3 flex-col lg:flex-row'>
             <div className="bg-[#1e293b] rounded-lg pl-8 mt-4 ">

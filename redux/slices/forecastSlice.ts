@@ -1,42 +1,52 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getForecast } from '../../services/weatherApi';
+import axiosInstance from '../../src/utils/axiosInstance';
 
-interface ForecastItem {
-  dt_txt: string; // تاریخ و زمان
+// تعریف نوع برای هر آیتم پیش‌بینی
+export interface ForecastItem {
+  dt_txt: string;
   main: {
-    temp: number; // دما
-    humidity: number; // رطوبت
+    temp: number;
+    humidity: number;
   };
-  weather: { description: string; icon: string }[]; // وضعیت آب‌وهوا
+  weather: {
+    description: string;
+    icon: string;
+  }[];
 }
 
+// تعریف نوع برای پاسخ API
+export interface ForecastResponse {
+  list: ForecastItem[];
+}
+
+// تعریف نوع برای state
 interface ForecastState {
-  data: {
-    list: ForecastItem[]; // لیست پیش‌بینی روزانه
-  } | null;
+  data: ForecastItem[] | null; // لیستی از آیتم‌های پیش‌بینی
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
+// مقدار اولیه state
 const initialState: ForecastState = {
   data: null,
   status: 'idle',
   error: null,
 };
 
-// Thunk برای دریافت پیش‌بینی چندروزه
-export const fetchForecast = createAsyncThunk(
+// Thunk برای دریافت داده‌های پیش‌بینی
+export const fetchForecast = createAsyncThunk<ForecastItem[], string>(
   'forecast/fetchForecast',
-  async (city: string, { rejectWithValue }) => {
+  async (city, { rejectWithValue }) => {
     try {
-      return await getForecast(city);
+      const response = await axiosInstance.get<ForecastResponse>(`forecast?q=${city}`);
+      return response.data.list; // بازگشت لیست پیش‌بینی‌ها
     } catch (error: any) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || 'An error occurred'); // مدیریت خطا
     }
   }
 );
 
-// Slice برای مدیریت پیش‌بینی چندروزه
+// ایجاد Slice برای پیش‌بینی
 const forecastSlice = createSlice({
   name: 'forecast',
   initialState,
@@ -44,18 +54,19 @@ const forecastSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchForecast.pending, (state) => {
-        state.status = 'loading';
+        state.status = 'loading'; // وضعیت در حال بارگذاری
         state.error = null;
       })
       .addCase(fetchForecast.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.data = action.payload;
+        state.status = 'succeeded'; // وضعیت موفق
+        state.data = action.payload; // ذخیره داده‌های پیش‌بینی
       })
       .addCase(fetchForecast.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload as string;
+        state.status = 'failed'; // وضعیت شکست
+        state.error = action.payload as string; // ذخیره پیام خطا
       });
   },
 });
 
+// خروجی reducer برای استفاده در store
 export default forecastSlice.reducer;
