@@ -25,7 +25,6 @@ export const fetchTehranWeather = createAsyncThunk('tehranWeather/fetchTehranWea
   );
   const data = await response.json();
 
-  // پردازش داده‌ها برای همخوانی با تایپ
   const forecast = data.list.map((item: any) => ({
     dt: item.dt,
     temp: item.main.temp,

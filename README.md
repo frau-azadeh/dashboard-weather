@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌦️ Weather Dashboard
 
-## Getting Started
+A **modern weather dashboard** built with **Next.js**, **TypeScript**, and **Redux Toolkit** (RTK Query), featuring a responsive and user-friendly design.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🌍 **Current Weather**: Displays real-time weather conditions based on the user's location.
+- 📅 **Weather Forecast**: Provides a 5-day weather forecast.
+- 🎨 **Responsive Design**: Optimized for all devices using **Tailwind CSS**.
+- ⚡ **Fast Data Fetching**: Powered by **RTK Query** for efficient API calls and caching.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: Framework for server-side rendering and static site generation.
+- **TypeScript**: Static type checking for safer code.
+- **Redux Toolkit**: State management made simple.
+- **RTK Query**: For seamless API integrations.
+- **Tailwind CSS**: For utility-first CSS design.
+- **Axios**: HTTP client for API requests.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deployment
 
-## Learn More
+The project is live on [Vercel](https://weather-dashboard.vercel.app) 🌐. *(Replace this with your actual link.)*
 
-To learn more about Next.js, take a look at the following resources:
+## 🧰 Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Follow these steps to get started:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/frau-azadeh/dashboard-weather.git
 
-## Deploy on Vercel
+2. **Navigate to the project folder:**
+    cd dashboard-weather
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Install dependencies:**
+    npm install
+    or
+    yarn install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Set up your environment variables:**
+    .Create a .env.local file in the project root.
+    .Add your API key: NEXT_PUBLIC_WEATHER_API_KEY=your_api_key
+
+📡 Using RTK Query
+This project uses RTK Query for managing API calls. The weather API integration is defined in:
+
+File: redux/slices/weatherSlice.ts
+Key Functions:
+createApi
+fetchBaseQuery
+Features: Automatic caching, refetching, and real-time updates.
+🖌️ Design
+The UI is crafted using Tailwind CSS, ensuring a clean and modern look with full responsiveness. The design adapts seamlessly to various screen sizes.
+
+🤝 Contributing
+Contributions are welcome! If you'd like to contribute:
+
+Fork the repository.
+Create a new branch: git checkout -b feature-name.
+Commit your changes: git commit -m "Add feature-name".
+Push to the branch: git push origin feature-name.
+Submit a pull request.

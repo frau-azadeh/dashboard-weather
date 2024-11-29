@@ -25,7 +25,6 @@ const initialState: CurrentWeatherState = {
   error: null,
 };
 
-// Thunk برای دریافت وضعیت فعلی
 export const fetchCurrentWeather = createAsyncThunk<CurrentWeather, string>(
   'currentWeather/fetchCurrentWeather',
   async (city, { rejectWithValue }) => {

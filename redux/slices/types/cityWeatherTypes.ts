@@ -1,12 +1,12 @@
 export interface CityWeather {
-    name: string; // نام شهر
+    name: string; 
     weather: {
-      description: string; // توضیحات آب‌وهوا
-      icon: string; // آیکون آب‌وهوا
+      description: string; 
+      icon: string; 
     }[];
     main: {
-      temp: number; // دما
-      humidity: number; // رطوبت
+      temp: number; 
+      humidity: number;
     };
   }
   

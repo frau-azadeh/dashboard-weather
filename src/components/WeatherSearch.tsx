@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchCurrentWeather } from '../../redux/slices/currentWeatherSlice';
 import { fetchForecast } from '../../redux/slices/forecastSlice';
-import { FiSearch } from 'react-icons/fi'; // آیکن جستجو از react-icons
+import { FiSearch } from 'react-icons/fi'; 
 
 export default function WeatherSearch() {
   const [city, setCity] = useState('');
@@ -36,11 +36,10 @@ export default function WeatherSearch() {
           type="submit"
           className="absolute inset-y-0 right-4 text-white flex items-center justify-center focus:outline-none"
         >
-          <FiSearch size={24} /> {/* آیکن جستجو */}
+          <FiSearch size={24} />
         </button>
       </form>
 
-      {/* نمایش خطاها */}
       {currentWeatherError && (
         <p className="mt-4 text-red-500">
           Failed to fetch current weather data: {currentWeatherError}

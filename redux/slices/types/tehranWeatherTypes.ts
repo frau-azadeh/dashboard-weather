@@ -1,8 +1,8 @@
 export interface WeatherData {
-    dt: number; // تاریخ و زمان
-    temp: number; // دما
-    icon: string; // آیکون آب‌وهوا
-    description: string; // توضیحات آب‌وهوا
+    dt: number;
+    temp: number; 
+    icon: string; 
+    description: string; 
   }
   
   export interface TehranWeatherState {

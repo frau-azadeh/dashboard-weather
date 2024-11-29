@@ -9,7 +9,6 @@ const initialState: CityWeatherState = {
   error: null,
 };
 
-// Thunk برای دریافت آب‌وهوای یک شهر
 export const fetchCityWeather = createAsyncThunk<CityWeather, string>(
   'cityWeather/fetchCityWeather',
   async (city, { rejectWithValue }) => {
@@ -24,7 +23,6 @@ export const fetchCityWeather = createAsyncThunk<CityWeather, string>(
   }
 );
 
-// Thunk برای دریافت داده‌های پیش‌فرض شهرها
 export const fetchDefaultCitiesWeather = createAsyncThunk<void, void>(
   'cityWeather/fetchDefaultCitiesWeather',
   async (_, { dispatch }) => {
@@ -34,7 +32,6 @@ export const fetchDefaultCitiesWeather = createAsyncThunk<void, void>(
   }
 );
 
-// Slice
 const cityWeatherSlice = createSlice({
   name: 'cityWeather',
   initialState,

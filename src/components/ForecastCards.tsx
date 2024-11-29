@@ -1,11 +1,10 @@
 import { useAppSelector } from '../../redux/hooks';
 import { ForecastItem } from '../../redux/slices/types/forecastTypes';
-
+import LottieIcon from '@/components/LottieIcon'; 
+import { getLottieIcon } from '../../src/utils/iconMapper';
 export default function ForecastCards() {
-  // دریافت داده پیش‌بینی از Redux
   const forecast = useAppSelector((state) => state.forecast.data);
 
-  // بررسی خطا یا خالی بودن داده
   if (!forecast || forecast.length === 0) {
     return <p className="text-white text-center">No forecast data available.</p>;
   }
@@ -20,11 +19,7 @@ export default function ForecastCards() {
           <p className="mb-2 text-lg font-bold">
             {new Date(item.dt_txt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </p>
-          <img
-            src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
-            alt="weather icon"
-            className="w-16 h-16 mb-2"
-          />
+          <LottieIcon icon={getLottieIcon(item.weather[0].icon)} />
           <p>{item.weather[0].description}</p>
           <p className="text-xl font-bold mt-2">{item.main.temp}°C</p>
         </div>

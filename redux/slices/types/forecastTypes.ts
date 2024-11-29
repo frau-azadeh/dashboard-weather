@@ -1,5 +1,5 @@
 export interface ForecastItem {
-  dt_txt: string; // تاریخ و زمان
+  dt_txt: string; 
   main: {
     temp: number;
     humidity: number;
