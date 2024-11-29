@@ -66,13 +66,12 @@ const TehranWeather = () => {
 
   return (
     <div>
-      <div className="mb-6 mt-6 p-4 bg-[#1e293b] rounded-lg flex justify-between items-center text-white">
+      <div className="mb-6 mt-6 ml-2 mr-2 p-4 bg-[#1e293b] rounded-lg flex justify-between items-center text-white">
         <div>
           <h2 className="text-2xl font-bold">Current Weather in Tehran</h2>
           <p className="text-lg">{currentWeather?.temp}°C</p>
           <p className="text-sm">{currentWeather?.description}</p>
         </div>
-        {/* جایگزینی <img> با LottieIcon */}
         <LottieIcon icon={getLottieIcon(currentWeather?.icon || '')} />
         <p>
           {currentWeather?.dt
@@ -84,7 +83,7 @@ const TehranWeather = () => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 ml-2 mr-2">
         {filteredForecast?.map((data, idx) => (
           <div key={idx} className="p-4 bg-[#1e293b] rounded-lg text-white text-center">
             <p>
@@ -99,7 +98,7 @@ const TehranWeather = () => {
         ))}
       </div>
 
-      <div className="mt-6 bg-[#1e293b] rounded-lg p-4">
+      <div className="mt-6 bg-[#1e293b] rounded-lg p-4 ml-2 mr-2">
         <h3 className="text-lg font-bold mb-4">Temperature Changes</h3>
         <Line data={chartData} options={chartOptions} />
       </div>
