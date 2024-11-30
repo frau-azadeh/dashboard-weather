@@ -42,7 +42,7 @@ Follow these steps to get started:
     .Create a .env.local file in the project root.
     .Add your API key: NEXT_PUBLIC_WEATHER_API_KEY=your_api_key
 
-📡 Using RTK Query
+## 📡 Using RTK Query
 This project uses RTK Query for managing API calls. The weather API integration is defined in:
 
 File: redux/slices/weatherSlice.ts
@@ -50,10 +50,11 @@ Key Functions:
 createApi
 fetchBaseQuery
 Features: Automatic caching, refetching, and real-time updates.
-🖌️ Design
+
+## 🖌️ Design
 The UI is crafted using Tailwind CSS, ensuring a clean and modern look with full responsiveness. The design adapts seamlessly to various screen sizes.
 
-🤝 Contributing
+## 🤝 Contributing
 Contributions are welcome! If you'd like to contribute:
 
 Fork the repository.
