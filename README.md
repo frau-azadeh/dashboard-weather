@@ -20,7 +20,7 @@ A **modern weather dashboard** built with **Next.js**, **TypeScript**, and **Red
 
 ## 🚀 Deployment
 
-The project is live on [Vercel](https://weather-dashboard-pi-liard.vercel.app/) 🌐. *(Replace this with your actual link.)*
+The project is live on [Vercel](https://weather-ashy-three-72.vercel.app/) 🌐. *(Replace this with your actual link.)*
 
 ## 🧰 Installation
 
