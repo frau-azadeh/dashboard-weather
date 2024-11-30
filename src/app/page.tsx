@@ -11,6 +11,7 @@ import TehranWeather from '@/components/TehranWeather';
 import ForecastCards from '@/components/ForecastCards';
 import CurrentWeatherCard from '@/components/CurrentWeatherCard';
 import Footer from '@/components/Footer';
+import WorldMap from '../components/WorldMap';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -33,10 +34,8 @@ export default function Home() {
           <ForecastCards />        
         </div>
         <div className='flex-none w-full lg:w-1/3 flex-col '>
-            <div className="bg-[#1e293b] rounded-lg pl-8 mt-4 ml-2 mr-2">
-                  <img  src="../../../images/world.svg" alt="world" width={300} height={400}/>
-                </div>
-            <TehranWeather />
+          <WorldMap />
+          <TehranWeather />
         </div>
       </div>
     </div>
