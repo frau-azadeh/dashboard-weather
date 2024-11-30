@@ -98,7 +98,7 @@ const TehranWeather = () => {
         ))}
       </div>
 
-      <div className="mt-6 bg-[#1e293b] rounded-lg p-4 ml-2 mr-2">
+      <div className="mt-6 bg-[#1e293b] rounded-lg p-4 ml-2 mr-2 mb-2">
         <h3 className="text-lg font-bold mb-4">Temperature Changes</h3>
         <Line data={chartData} options={chartOptions} />
       </div>
