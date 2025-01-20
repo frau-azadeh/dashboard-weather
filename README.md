@@ -2,6 +2,29 @@
 
 A **modern weather dashboard** built with **Next.js**, **TypeScript**, and **Redux Toolkit** (RTK Query), featuring a responsive and user-friendly design.
 
+## 📸 Screenshots
+
+### 💻 Desktop View
+A modern and informative design for desktop users:
+
+![Desktop View](https://github.com/frau-azadeh/dashboard-weather/blob/master/desk-weather.png)
+
+---
+
+### 📊 Tablet View
+Optimized layout for tablets and mid-sized devices:
+
+![Tablet View](https://github.com/frau-azadeh/dashboard-weather/blob/master/tablet.weather.png)
+
+---
+
+### 📱 Mobile View
+Fully responsive and tailored for mobile devices:
+
+![Mobile View](https://github.com/frau-azadeh/dashboard-weather/blob/master/mobile-weather.png)
+
+---
+
 ## ✨ Features
 
 - 🌍 **Current Weather**: Displays real-time weather conditions based on the user's location.
